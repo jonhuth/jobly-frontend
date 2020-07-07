@@ -1,22 +1,26 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import JoblyApi from './JoblyApi';
-
+import { useParams } from 'react-router-dom';
 
 function CompanyDetail() {
+  const { company } = useParams();
+
+  const [companyData, setCompanyData] = useState({});
 
   useEffect(() => {
     async function getCompanyDetail() {
-      let res = await JoblyApi.getCompany('edwards-lee-and-reese');
-      console.log(res);
+      const companyData = await JoblyApi.getCompany(company);
+      console.log('companyData...', companyData);
     }
-    
     getCompanyDetail();
   }, []);
-  return (<div>
-    Company Detail goes here
 
-
-  </div>);
+  const { name, jobs } = companyData;
+  return (
+    <div>
+      <JobCard jobs={jobs} />
+    </div>
+  );
 }
 
 export default CompanyDetail;
