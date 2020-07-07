@@ -1,6 +1,11 @@
+import axios from 'axios';
+
 class JoblyApi {
   static async request(endpoint, params = {}, verb = "get") {
     console.debug("API Call:", endpoint, params, verb);
+
+    // should come from env var
+    const BASE_URL = 'http://localhost:3001';
 
     const _token = ( // for now, hardcode token for "testing"
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc" +
@@ -29,3 +34,5 @@ class JoblyApi {
     return res.company;
   }
 }
+
+export default JoblyApi;
