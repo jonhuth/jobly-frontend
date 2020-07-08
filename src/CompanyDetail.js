@@ -20,10 +20,7 @@ function CompanyDetail() {
     return null;
   }
   const { name, description, jobs } = companyData;
-  console.log('jobs ...',jobs);
-  console.log('name ...',name);
-  console.log('description ...',description);
-  
+
   return (
     <div>
       <h1>{name}</h1>

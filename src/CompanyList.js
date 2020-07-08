@@ -25,7 +25,7 @@ function CompanyList() {
     <div>
       <SearchForm searchFor={searchFor} />
       {companies.map((company) => (
-        <CompanyCard companyInfo={company} />
+        <CompanyCard key={company.handle} companyInfo={company} />
       ))}
     </div>
   );

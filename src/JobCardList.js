@@ -6,7 +6,9 @@ function JobCardList({ jobs, apply }) {
   // console.log('jobs in job card list', jobs);
   return (
     <div>
-      {jobs.map(job => <JobCard job={job} apply={apply} />)}
+      {jobs.map((job) => (
+        <JobCard key={job.id} job={job} apply={apply} />
+      ))}
     </div>
   );
 }
