@@ -8,9 +8,9 @@ function CompanyList() {
   // const [searchTerm, setSeachTerm]
   useEffect(function () {
     async function getCompanies() {
-      let res = await JoblyApi.getCompanies();
+      let companies = await JoblyApi.getCompanies();
       // This modifies companies; don't put companies in the []
-      setCompanies(res);
+      setCompanies(companies);
     }
     getCompanies();
   }, []); // don't put companies here

@@ -10,9 +10,8 @@ function CompanyDetail() {
 
   useEffect(() => {
     async function getCompanyDetail() {
-      const companyData = await JoblyApi.getCompany(company);
+      let companyData = await JoblyApi.getCompany(company);
       setCompanyData(companyData);
-      console.log('companyData...', companyData);
     }
     getCompanyDetail();
   }, []);
@@ -21,13 +20,15 @@ function CompanyDetail() {
     return null;
   }
   const { name, description, jobs } = companyData;
-  console.log(jobs);
+  console.log('jobs ...',jobs);
+  console.log('name ...',name);
+  console.log('description ...',description);
   
   return (
     <div>
       <h1>{name}</h1>
       <h3>{description}</h3>
-      <JobCardList jobs={jobs} apply={apply} />
+      {jobs && <JobCardList jobs={jobs} apply={apply} />}
     </div>
   );
 }
