@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import JobCardList from './JobCardList';
 import JoblyApi from './JoblyApi';
 import { useParams } from 'react-router-dom';
 
@@ -10,15 +11,23 @@ function CompanyDetail() {
   useEffect(() => {
     async function getCompanyDetail() {
       const companyData = await JoblyApi.getCompany(company);
+      setCompanyData(companyData);
       console.log('companyData...', companyData);
     }
     getCompanyDetail();
   }, []);
 
-  const { name, jobs } = companyData;
+  function apply() {
+    return null;
+  }
+  const { name, description, jobs } = companyData;
+  console.log(jobs);
+  
   return (
     <div>
-      <JobCard jobs={jobs} />
+      <h1>{name}</h1>
+      <h3>{description}</h3>
+      <JobCardList jobs={jobs} apply={apply} />
     </div>
   );
 }
