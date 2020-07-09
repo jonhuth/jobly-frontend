@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-function Navigation({ logout }) {
-  const token = localStorage.getItem('token');
+function Navigation({ logout, token }) {
+  // const token = localStorage.getItem('token'); why doesn't this work??
   if (token) {
     return (
       <div>

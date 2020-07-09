@@ -9,8 +9,7 @@ import LoginSignup from './LoginSignup';
 // import SignupForm from './SignupForm';
 import ProfileForm from './ProfileForm';
 
-function Routes({ login, signup }) {
-  const token = localStorage.getItem('token');
+function Routes({ login, signup, token }) {
   return (
     <Switch>
       <Route exact path='/companies/:company'>

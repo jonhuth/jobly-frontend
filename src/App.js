@@ -46,8 +46,8 @@ function App() {
   return (
     <div className='App'>
       <BrowserRouter>
-        <Navigation logout={logout} />
-        <Routes login={login} signup={signup} />
+        <Navigation logout={logout} token={token} />
+        <Routes login={login} signup={signup} token={token} />
       </BrowserRouter>
     </div>
   );
