@@ -2,9 +2,17 @@ import React, { useState, useEffect } from 'react';
 import JoblyApi from './JoblyApi';
 
 function ProfileForm({ currentUser }) {
+  // const INITIAL_STATE = {
+  //   first_name: '',
+  //   last_name: '',
+  //   email: '',
+  //   photo_url: '',
+  //   password: '',
+  // };
+  // const [formData, setFormData] = useState(INITIAL_STATE);
   const [formData, setFormData] = useState({});
   const [formErrors, setFormErrors] = useState('');
-  
+
   useEffect(() => {
     async function getProfile() {
       let userData = await JoblyApi.getUser(currentUser.username);
@@ -13,41 +21,40 @@ function ProfileForm({ currentUser }) {
     getProfile();
   }, []);
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    async function handleAsyncSubmit() {
-      await JoblyApi.updateUser(formData);
-    }
-    handleAsyncSubmit();
-    
+    await JoblyApi.updateUser(formData);
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      password: '',
+    }));
   }
 
   function handleChange(evt) {
     const { name, value } = evt.target;
     // set new state for form data
-    setFormData(prevFormData => ({
+    setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value
+      [name]: value,
     }));
   }
-  if(!formData) {
+
+  if (!formData) {
     return null;
   }
   return (
     <div>
       <h1>Profile</h1>
       <form onSubmit={handleSubmit}>
-        <h3>Username</h3>
-        <h5> {currentUser.username}</h5>
         <input
-          type='first_name'
+          type='text'
           value={formData.first_name}
           name='first_name'
           placeholder='first_name'
           onChange={handleChange}
         />
         <input
-          type='last_name'
+          type='text'
           value={formData.last_name}
           name='last_name'
           placeholder='last_name'
@@ -61,7 +68,7 @@ function ProfileForm({ currentUser }) {
           onChange={handleChange}
         />
         <input
-          type='photo_url'
+          type='url'
           value={formData.photo_url}
           name='photo_url'
           placeholder='photo_url'
