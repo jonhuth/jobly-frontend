@@ -13,20 +13,15 @@ function JobList() {
     getJobs();
   }, []);
 
+  async function apply(jobId) {
+    await JoblyApi.applyForJob(jobId);
+    let jobs = await JoblyApi.getJobs();
+    setJobs(jobs);
+  }
+
   async function searchFor(str) {
     const searchResult = await JoblyApi.getJobs(str);
     setJobs(searchResult);
-  }
-
-  // async function searchForHelper(str, getFunc = null, setFunc=null) {
-  //   const searchResult = await JoblyApi.getFunc(str);
-  //   setJobs(searchResult);
-  // }
-
-  // searchForHelper(str, getJobs, setJobs);
-
-  function apply() {
-    return null;
   }
 
   return (

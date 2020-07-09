@@ -65,6 +65,11 @@ class JoblyApi {
       'patch'
     );
   }
+
+  static async applyForJob(jobId) {
+    let res = await this.request(`jobs/${jobId}/apply`, {state: 'applied'},  'post');
+    return res.message;
+  }
 }
 
 export default JoblyApi;

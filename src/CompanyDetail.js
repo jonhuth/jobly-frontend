@@ -16,16 +16,19 @@ function CompanyDetail() {
     getCompanyDetail();
   }, []);
 
-  function apply() {
-    return null;
-  }
+  // async function apply(jobId) {
+  //   await JoblyApi.applyForJob(jobId);
+  //   let jobs = await JoblyApi.getJobs();
+  //   setJobs(jobs);
+  // }
+
   const { name, description, jobs } = companyData;
 
   return (
     <div>
       <h1>{name}</h1>
       <h3>{description}</h3>
-      {jobs && <JobCardList jobs={jobs} apply={apply} />}
+      {jobs && <JobCardList jobs={jobs} />}
     </div>
   );
 }

@@ -45,6 +45,7 @@ function ProfileForm({ currentUser }) {
   return (
     <div>
       <h1>Profile</h1>
+      <h3>Username: {currentUser.username}</h3>
       <form onSubmit={handleSubmit}>
         <input
           type='text'
