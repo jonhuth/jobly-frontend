@@ -47,7 +47,7 @@ function App() {
     <div className='App'>
       <BrowserRouter>
         <Navigation logout={logout} token={token} />
-        <Routes login={login} signup={signup} token={token} />
+        <Routes login={login} signup={signup} token={token} currentUser={currentUser} />
       </BrowserRouter>
     </div>
   );

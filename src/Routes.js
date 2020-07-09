@@ -9,7 +9,7 @@ import LoginSignup from './LoginSignup';
 // import SignupForm from './SignupForm';
 import ProfileForm from './ProfileForm';
 
-function Routes({ login, signup, token }) {
+function Routes({ login, signup, token, currentUser }) {
   return (
     <Switch>
       <Route exact path='/companies/:company'>
@@ -29,7 +29,7 @@ function Routes({ login, signup, token }) {
         )}
       </Route>
       <Route exact path='/profile'>
-        {token ? <ProfileForm /> : <Redirect to='/login' />}
+        {token ? <ProfileForm currentUser={currentUser}/> : <Redirect to='/login' />}
       </Route>
       <Route exact path='/'>
         <Homepage />

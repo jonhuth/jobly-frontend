@@ -1,9 +1,83 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import JoblyApi from './JoblyApi';
 
-function ProfileForm() {
-  return (<div>
+function ProfileForm({ currentUser }) {
+  const [formData, setFormData] = useState({});
+  const [formErrors, setFormErrors] = useState('');
+  
+  useEffect(() => {
+    async function getProfile() {
+      let userData = await JoblyApi.getUser(currentUser.username);
+      setFormData(userData);
+    }
+    getProfile();
+  }, []);
 
-    </div>);
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    async function handleAsyncSubmit() {
+      await JoblyApi.updateUser(formData);
+    }
+    handleAsyncSubmit();
+    
+  }
+
+  function handleChange(evt) {
+    const { name, value } = evt.target;
+    // set new state for form data
+    setFormData(prevFormData => ({
+      ...prevFormData,
+      [name]: value
+    }));
+  }
+  if(!formData) {
+    return null;
+  }
+  return (
+    <div>
+      <h1>Profile</h1>
+      <form onSubmit={handleSubmit}>
+        <h3>Username</h3>
+        <h5> {currentUser.username}</h5>
+        <input
+          type='first_name'
+          value={formData.first_name}
+          name='first_name'
+          placeholder='first_name'
+          onChange={handleChange}
+        />
+        <input
+          type='last_name'
+          value={formData.last_name}
+          name='last_name'
+          placeholder='last_name'
+          onChange={handleChange}
+        />
+        <input
+          type='email'
+          value={formData.email}
+          name='email'
+          placeholder='email'
+          onChange={handleChange}
+        />
+        <input
+          type='photo_url'
+          value={formData.photo_url}
+          name='photo_url'
+          placeholder='photo_url'
+          onChange={handleChange}
+        />
+        <input
+          type='password'
+          value={formData.password}
+          name='password'
+          placeholder='password'
+          onChange={handleChange}
+        />
+        <button>Save Changes</button>
+      </form>
+    </div>
+  );
 }
 
 export default ProfileForm;

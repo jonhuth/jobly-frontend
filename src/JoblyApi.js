@@ -43,7 +43,6 @@ class JoblyApi {
   }
 
   static async login(userObj) {
-    console.log(userObj);
     let res = await this.request('login',
       userObj, 'post');
     return res.token;
@@ -52,6 +51,18 @@ class JoblyApi {
   static async signup(userObj) {
     let res = await this.request('users',
       userObj, 'post');
+    return res.token;
+  }
+
+  static async getUser(username) {
+    let res = await this.request(`users/${username}`);
+    return res.user;
+  }
+
+  static async updateUser(userInfo) {
+    console.log(userInfo);
+    let res = await this.request(`users/${userInfo.username}`,
+      userInfo, 'patch');
     return res.token;
   }
 }
