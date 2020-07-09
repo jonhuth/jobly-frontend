@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Redirect } from "react-router-dom";
+import { BrowserRouter, Redirect } from 'react-router-dom';
 import './App.css';
 import Navigation from './Navigation';
 import Routes from './Routes';
@@ -13,8 +13,10 @@ function App() {
   // use effect with token as dependency
   // set or remove token based on current token state
   useEffect(() => {
-    token ? localStorage.setItem('token', token) : localStorage.removeItem('token');
-  }, [token])
+    token
+      ? localStorage.setItem('token', token)
+      : localStorage.removeItem('token');
+  }, [token]);
 
   function logout() {
     // set token and current user states back to default
@@ -42,10 +44,10 @@ function App() {
     return null;
   }
   return (
-    <div className="App">
+    <div className='App'>
       <BrowserRouter>
-        <Navigation token={token} logout={logout} />
-        <Routes login={login} signup={signup} token={token} />
+        <Navigation logout={logout} />
+        <Routes login={login} signup={signup} />
       </BrowserRouter>
     </div>
   );
