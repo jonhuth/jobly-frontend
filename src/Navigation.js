@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
 
-function Navigation({ token }) {
+function Navigation({ token, logout }) {
 
   if (token) {
     return <div>
@@ -11,7 +11,7 @@ function Navigation({ token }) {
         <NavLink exact to="/companies">Companies</NavLink>
         <NavLink exact to="/jobs">Jobs</NavLink>
         <NavLink exact to="/profile">Profile</NavLink>
-        <NavLink exact to="/">Logout</NavLink>
+        <NavLink exact to="/" ><span onClick={logout}>Logout</span></NavLink>
       </nav>
     </div>
         }

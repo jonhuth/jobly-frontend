@@ -6,11 +6,8 @@ class JoblyApi {
 
     // should come from env var
     const BASE_URL = 'http://localhost:3001';
-
-    const _token = // for now, hardcode token for "testing"
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc' +
-      '3RpbmciLCJpc19hZG1pbiI6ZmFsc2UsImlhdCI6MTU1MzcwMzE1M30.' +
-      'COmFETEsTxN_VfIlgIKw0bYJLkvbRQNgO1XCSE8NZ0U';
+    // for now, hardcode token for "testing"
+    const _token = localStorage.getItem('token');
 
     const data =
       verb === 'get'
@@ -43,6 +40,19 @@ class JoblyApi {
   static async getJobs(searchTerm = '') {
     let res = await this.request(`jobs?search=${searchTerm}`);
     return res.jobs;
+  }
+
+  static async login(userObj) {
+    console.log(userObj);
+    let res = await this.request('login',
+      userObj, 'post');
+    return res.token;
+  }
+
+  static async signup(userObj) {
+    let res = await this.request('users',
+      userObj, 'post');
+    return res.token;
   }
 }
 
