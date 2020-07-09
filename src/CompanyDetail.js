@@ -16,11 +16,12 @@ function CompanyDetail() {
     getCompanyDetail();
   }, []);
 
-  // async function apply(jobId) {
-  //   await JoblyApi.applyForJob(jobId);
-  //   let jobs = await JoblyApi.getJobs();
-  //   setJobs(jobs);
-  // }
+  async function apply(jobId) {
+    // await JoblyApi.applyForJob(jobId);
+    // let jobs = await JoblyApi.getJobs();
+    // setJobs(jobs);
+    return null;
+  }
 
   const { name, description, jobs } = companyData;
 
@@ -28,7 +29,7 @@ function CompanyDetail() {
     <div>
       <h1>{name}</h1>
       <h3>{description}</h3>
-      {jobs && <JobCardList jobs={jobs} />}
+      {jobs && <JobCardList jobs={jobs} apply={apply} />}
     </div>
   );
 }
